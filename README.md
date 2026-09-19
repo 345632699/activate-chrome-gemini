@@ -25,6 +25,26 @@ Linux 版逻辑与 macOS 版完全一致，差异仅在：
 
 要求系统已安装 Google Chrome（Deb/RPM 官方包均可），且已运行过至少一次（存在 `Local State`）。
 
+## 快速开始（Windows）
+
+PowerShell 中执行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\activate-gemini-windows.ps1
+# 或跳过确认：
+powershell -ExecutionPolicy Bypass -File scripts\activate-gemini-windows.ps1 -y
+```
+
+Windows 版逻辑与 macOS/Linux 版完全一致，差异仅在：
+
+- Chrome 路径依次探测 `Program Files` / `Program Files (x86)` / `%LOCALAPPDATA%`
+- 配置目录为 `%LOCALAPPDATA%\Google\Chrome\User Data`
+- 退出 Chrome 用 `CloseMainWindow()`（优雅）→ `Stop-Process -Force`（超时兜底）
+- JSON 读写用 `ConvertFrom-Json` / `ConvertTo-Json`，以 UTF-8 无 BOM 保存（与 Chrome 格式一致）
+- 用 `Start-Process` 带参启动，`Win32_Process` 查询命令行验证参数
+
+要求 Windows PowerShell 5.1 及以上（Win10/11 自带），且已运行过至少一次 Chrome（存在 `Local State`）。
+
 脚本会自动完成：
 
 1. 完全退出 Chrome（优雅退出，失败才强制结束）
@@ -76,6 +96,8 @@ chrome://glic/internals
 cd ~/Library/Application\ Support/Google/Chrome
 # Linux
 cd ~/.config/google-chrome
+# Windows (PowerShell)
+cd $env:LOCALAPPDATA\Google\Chrome\"User Data"
 
 cp "Local State.backup-<时间戳>" "Local State"
 ```

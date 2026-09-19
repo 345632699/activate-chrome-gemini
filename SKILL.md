@@ -1,13 +1,13 @@
 ---
 name: activate-chrome-gemini
-description: 激活 Chrome 隐藏的原生 Gemini 侧边栏（内部代号 Glic）。当用户想让 Chrome 右上角出现 Gemini ✨ 按钮、激活 Chrome 自带 AI 助手、打开 Glic/Gemini in Chrome 侧边栏，或按知乎教程修改 Local State（Variations_country / is_glic_eligible）却无效时使用。支持 macOS / Linux，含一键脚本、门控原理、诊断方法和持久化方案。
+description: 激活 Chrome 隐藏的原生 Gemini 侧边栏（内部代号 Glic）。当用户想让 Chrome 右上角出现 Gemini ✨ 按钮、激活 Chrome 自带 AI 助手、打开 Glic/Gemini in Chrome 侧边栏，或按知乎教程修改 Local State（Variations_country / is_glic_eligible）却无效时使用。支持 macOS / Linux / Windows，含一键脚本、门控原理、诊断方法和持久化方案。
 ---
 
 # 激活 Chrome 原生 Gemini 侧边栏（Glic）
 
 ## 快速路径：一键脚本
 
-macOS / Linux 上优先执行技能自带脚本（自动完成退出、备份、写入、带参重启全流程）：
+macOS / Linux / Windows 上优先执行技能自带脚本（自动完成退出、备份、写入、带参重启全流程）：
 
 ```bash
 # macOS
@@ -15,6 +15,11 @@ bash ~/.claude/skills/activate-chrome-gemini/scripts/activate-gemini.sh        #
 bash ~/.claude/skills/activate-chrome-gemini/scripts/activate-gemini.sh -y     # 跳过确认
 # Linux
 bash ~/.claude/skills/activate-chrome-gemini/scripts/activate-gemini-linux.sh  # 交互确认
+```
+
+```powershell
+# Windows（PowerShell）
+powershell -ExecutionPolicy Bypass -File $env:USERPROFILE\.claude\skills\activate-chrome-gemini\scripts\activate-gemini-windows.ps1
 ```
 
 脚本做的事（与门控一一对应）：
