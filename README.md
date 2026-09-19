@@ -10,6 +10,21 @@
 bash scripts/activate-gemini.sh
 ```
 
+## 快速开始（Linux）
+
+```bash
+bash scripts/activate-gemini-linux.sh
+```
+
+Linux 版逻辑与 macOS 版完全一致，差异仅在：
+
+- Chrome 路径为 `/opt/google/chrome/chrome`（检测 `google-chrome` 命令）
+- 配置目录为 `~/.config/google-chrome/`
+- 退出 Chrome 用 `pkill -TERM`（优雅）→ `pkill -KILL`（超时兜底），替代 `osascript`/`killall`
+- 用 `nohup` 后台启动替代 macOS 的 `open -a`
+
+要求系统已安装 Google Chrome（Deb/RPM 官方包均可），且已运行过至少一次（存在 `Local State`）。
+
 脚本会自动完成：
 
 1. 完全退出 Chrome（优雅退出，失败才强制结束）
@@ -57,7 +72,11 @@ chrome://glic/internals
 脚本每次执行前都会自动备份。出问题时：
 
 ```bash
+# macOS
 cd ~/Library/Application\ Support/Google/Chrome
+# Linux
+cd ~/.config/google-chrome
+
 cp "Local State.backup-<时间戳>" "Local State"
 ```
 
